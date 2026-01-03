@@ -42,7 +42,7 @@ from setuptools import setup, find_packages
 __plugin_name__ = "Streaming"
 __author__ = "Anders Jensen"
 __author_email__ = "johndoee@tridentstream.org"
-__version__ = "0.12.2"
+__version__ = "0.13.0"
 __url__ = "https://github.com/JohnDoee/deluge-streaming"
 __license__ = "GPLv3"
 __description__ = "Enables streaming of files while downloading them."
@@ -64,17 +64,6 @@ downloads ahead, this enables seeking in video files.
 If you want to stream from a non-local computer, e.g. your seedbox, you will need to change the IP in option to the external server ip."""
 __pkg_data__ = {__plugin_name__.lower(): ["template/*", "data/*"]}
 
-REQUIREMENTS_PACKAGES = [
-    'thomas',
-    'lepl',
-    'pytz',
-]
-
-REQUIREMENTS_MODULES = [
-    'rarfile',
-    'rfc6266',
-]
-
 setup(
     name=__plugin_name__,
     version=__version__,
@@ -84,11 +73,35 @@ setup(
     url=__url__,
     license=__license__,
     long_description=__long_description__ if __long_description__ else __description__,
-    # install_requires=REQUIREMENTS_PACKAGES,
+    long_description_content_type="text/markdown",
+    python_requires='>=3.8',
 
-    packages=[__plugin_name__.lower()] + ['%s.%s' % (x, y) for x in REQUIREMENTS_PACKAGES for y in find_packages(x)] + REQUIREMENTS_PACKAGES,
-    py_modules=REQUIREMENTS_MODULES,
+    # Dependencies that need to be installed (Deluge will handle these)
+    install_requires=[
+        'thomas>=0.2.0',
+        'rarfile>=4.0',
+    ],
+
+    # Only include the main plugin package and vendored rfc6266 module
+    packages=[__plugin_name__.lower()],
+    py_modules=['rfc6266'],  # rfc6266 is vendored in the project root
     package_data = __pkg_data__,
+
+    classifiers=[
+        'Development Status :: 4 - Beta',
+        'Intended Audience :: End Users/Desktop',
+        'License :: OSI Approved :: GNU General Public License v3 (GPLv3)',
+        'Programming Language :: Python :: 3',
+        'Programming Language :: Python :: 3.8',
+        'Programming Language :: Python :: 3.9',
+        'Programming Language :: Python :: 3.10',
+        'Programming Language :: Python :: 3.11',
+        'Programming Language :: Python :: 3.12',
+        'Programming Language :: Python :: 3.13',
+        'Programming Language :: Python :: 3.14',
+        'Framework :: Twisted',
+        'Operating System :: OS Independent',
+    ],
 
     entry_points="""
     [deluge.plugin.core]

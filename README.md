@@ -11,10 +11,44 @@ the user to stream a file using HTTP.
 Technically, it tries to download the part of a file the user requests and
 downloads ahead, this enables seeking in video files.
 
-## Where to download
+## Python Version Support
 
-You can download this release on Github. Look for the "releases" tab on the repository page.
-Under that tab, eggs for Python 2.6 and 2.7 should exist.
+**Updated for Python 3.8 - 3.14 compatibility!**
+
+This plugin now supports:
+- Python 3.8+
+- Python 3.10+
+- Python 3.12+
+- Python 3.14
+
+The old Python 2 version is no longer supported. For Python 3 support, use version 0.13.0 or later.
+
+### Note on Dependencies
+
+The `rfc6266` module is vendored (included as `rfc6266.py`) in this project because the original PyPI package is incompatible with Python 3.14 due to the deprecated `use_2to3` feature. Our vendored version provides all the functionality needed by the plugin and will be included automatically when you build the egg.
+
+## Building from Source
+
+### On Linux/macOS:
+```bash
+# For Python 3
+./create-egg3.sh
+```
+
+### On Windows (PowerShell):
+```powershell
+# For Python 3.14
+.\create-egg-py314.ps1
+```
+
+## Installation
+
+Install dependencies first (if building from source):
+```bash
+pip install -r requirements.txt
+```
+
+Then install the plugin egg file through the Deluge plugin manager.
 
 ## How to use
 

@@ -75,7 +75,7 @@ class MultipleRangeStaticProducer(static.MultipleRangeStaticProducer):
         if not self.request:
             return
 
-        self.request.write(''.join(data))
+        self.request.write(b''.join(data))
 
         if done:
             self.request.unregisterProducer()

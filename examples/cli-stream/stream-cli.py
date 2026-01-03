@@ -1,5 +1,5 @@
 import argparse
-import urllib
+import urllib.request
 
 from deluge_client import DelugeRPCClient
 
@@ -16,7 +16,8 @@ if __name__ == '__main__':
     args = parser.parse_args()
 
     if args.path_or_url.startswith('http'):
-        filedata = urllib.urlopen(args.path_or_url).read()
+        with urllib.request.urlopen(args.path_or_url) as response:
+            filedata = response.read()
     else:
         with open(args.path_or_url, 'rb') as f:
             filedata = f.read()

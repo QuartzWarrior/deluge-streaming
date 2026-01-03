@@ -1,0 +1,17 @@
+# Deluge Streaming Plugin Requirements
+# Python 3.8+ compatible
+
+# Core dependencies
+thomas>=0.2.0
+rarfile>=4.0
+
+# Note: rfc6266 is vendored in the project (rfc6266.py) due to Python 3.14 compatibility issues
+# The original package uses deprecated use_2to3 and cannot be installed on Python 3.14+
+
+# Twisted framework (comes with Deluge)
+# twisted>=21.0.0
+
+# Additional dependencies that come with Python 3.8+
+# These are just for reference
+# pytz - timezone support (may be bundled with thomas)
+
